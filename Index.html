@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Para Fani 💌</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(to right, #ff9a9e, #fecfef);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+    }
+    .mensaje {
+      text-align: center;
+      background: rgba(255,255,255,0.2);
+      padding: 30px;
+      border-radius: 20px;
+      animation: aparecer 2s ease-in-out;
+      z-index: 1;
+    }
+    h1 { font-size: 2.5em; margin-bottom: 15px; }
+    p { font-size: 1.2em; line-height: 1.6; }
+    @keyframes aparecer {
+      from {opacity: 0; transform: scale(0.8);}
+      to {opacity: 1; transform: scale(1);}
+    }
+    .botones { margin-top: 20px; }
+    button {
+      background: #fff;
+      color: #ff4b5c;
+      border: none;
+      padding: 15px 25px;
+      margin: 10px;
+      border-radius: 10px;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover { background: #ffe0e0; }
+    .corazon {
+      position: absolute;
+      font-size: 2em;
+      animation: flotar 6s infinite;
+    }
+    @keyframes flotar {
+      0% {transform: translateY(100vh);}
+      100% {transform: translateY(-10vh);}
+    }
+    /* Pantalla final */
+    .final {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      display: none; /* Oculto al inicio */
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+      font-size: 2em;
+      flex-direction: column;
+      z-index: 2;
+    }
+    .final h2 {
+      font-size: 3em;
+      margin-bottom: 20px;
+      animation: aparecer 2s ease-in-out;
+      z-index: 3;
+    }
+    .final p {
+      font-size: 1.5em;
+      line-height: 1.6;
+      z-index: 3;
+    }
+    /* Collage animado */
+    .collage {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      gap: 5px;
+      z-index: 1;
+    }
+    .collage img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transform: scale(1.2);
+      animation: fadeZoom 1.5s forwards;
+    }
+    .collage img:nth-child(1) { animation-delay: 0.2s; }
+    .collage img:nth-child(2) { animation-delay: 0.4s; }
+    .collage img:nth-child(3) { animation-delay: 0.6s; }
+    .collage img:nth-child(4) { animation-delay: 0.8s; }
+    .collage img:nth-child(5) { animation-delay: 1s; }
+    .collage img:nth-child(6) { animation-delay: 1.2s; }
+    .collage img:nth-child(7) { animation-delay: 1.4s; }
+    .collage img:nth-child(8) { animation-delay: 1.6s; }
+    .collage img:nth-child(9) { animation-delay: 1.8s; }
+    @keyframes fadeZoom {
+      to { opacity: 0.8; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Mensaje inicial -->
+  <div class="mensaje" id="mensajeInicial">
+    <h1>💖🐻 Para mi Osa 🐻💖</h1>
+    <p>Hola amor quisiera preguntarte si <br> ¿Quieres ser mi San Valentín?<br>Te amo infinitamente ❤️</p>
+    <div class="botones">
+      <button id="siBtn">Sí 💕</button>
+      <button id="noBtn">No 😢</button>
+    </div>
+  </div>
+
+  <!-- corazones flotando -->
+  <div class="corazon" style="left:15%;">💖</div>
+  <div class="corazon" style="left:40%; animation-delay:2s;">💕</div>
+  <div class="corazon" style="left:65%; animation-delay:4s;">❤️</div>
+  <div class="corazon" style="left:85%; animation-delay:1s;">💞</div>
+
+  <!-- Pantalla final -->
+  <div class="final" id="finalMsg">
+    <h2>🎉🐻🧸 ¡Sabía que dirías que sí! 🐻🧸🎉</h2>
+    <p>Gracias por permitirme ser tu San Valentín Amor 💖<br>Te amo con todo mi corazón Osa 🐻❤️</p>
+    <!-- Collage de fotos -->
+    <div class="collage">
+      <img src="a.jpg">
+      <img src="b.jpg">
+      <img src="c.jpg">
+      <img src="d.jpg">
+      <img src="e.jpg">
+      <img src="f.jpg">
+      <img src="g.jpg">
+      <img src="h.jpg">
+      <img src="i.jpg">
+    </div>
+    <!-- corazones extra -->
+    <div class="corazon" style="left:20%; animation-delay:1s;">💖</div>
+    <div class="corazon" style="left:50%; animation-delay:3s;">💕</div>
+    <div class="corazon" style="left:80%; animation-delay:5s;">❤️</div>
+  </div>
+
+  <!-- música -->
+    <audio id="musicaInicio" src="lepidoadios.mp3" loop></audio> 
+    <audio id="musicaFinal" src="lepidoadios.mp3" loop></audio>
+
+  <script>
+    const noBtn = document.getElementById('noBtn');
+    let size = 1.2;
+    noBtn.addEventListener('click', () => {
+      size -= 0.2;
+      if(size <= 0.2){
+        noBtn.style.display = 'none';
+      } else {
+        noBtn.style.fontSize = size + 'em';
+      }
+    });
+
+    const siBtn = document.getElementById('siBtn');
+    const finalMsg = document.getElementById('finalMsg');
+    const mensajeInicial = document.getElementById('mensajeInicial');
+    const musicaInicio = document.getElementById('musicaInicio');
+    const musicaFinal = document.getElementById('musicaFinal');
+
+    // Activar música al mover el mouse o tocar la pantalla
+    document.body.addEventListener('mousemove', () => {
+      musicaInicio.play();
+    }, {once:true});
+    document.body.addEventListener('touchstart', () => {
+      musicaInicio.play();
+    }, {once:true});
+
+    siBtn.addEventListener('click', () => {
+      mensajeInicial.style.display = 'none'; // Oculta el primer mensaje
+      finalMsg.style.display = 'flex'; // Muestra el nuevo mensaje con collage
+      musicaInicio.pause();
+      musicaFinal.play();
+    });
+  </script>
+</body>
+</html>
